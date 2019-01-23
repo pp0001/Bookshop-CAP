@@ -1,0 +1,4 @@
+---
+tomee/webapps/ROOT/WEB-INF/resources.xml:
+  service_name_for_DefaultDB: java-hdi-container
+
