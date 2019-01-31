@@ -1,0 +1,4 @@
+com\sap\demo\bookshop\jpa\my\bookshop\Books.class
+my\bookshop\CatalogService.class
+com\sap\demo\bookshop\jpa\my\bookshop\Authors.class
+com\sap\demo\bookshop\jpa\my\bookshop\Orders.class

@@ -1,0 +1,105 @@
+{
+  "definitions": {
+    "my.bookshop.Books": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "indexNo": 1,
+          "type": "cds.Integer"
+        },
+        "title": {
+          "indexNo": 2,
+          "type": "cds.String"
+        },
+        "author": {
+          "indexNo": 3,
+          "type": "cds.Association",
+          "target": "my.bookshop.Authors",
+          "foreignKeys": {
+            "ID": {
+              "path": "ID",
+              "indexNo": 1
+            }
+          }
+        },
+        "stock": {
+          "indexNo": 4,
+          "type": "cds.Integer"
+        }
+      }
+    },
+    "my.bookshop.Authors": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "indexNo": 1,
+          "type": "cds.Integer"
+        },
+        "name": {
+          "indexNo": 2,
+          "type": "cds.String"
+        },
+        "books": {
+          "indexNo": 3,
+          "type": "cds.Association",
+          "target": "my.bookshop.Books",
+          "cardinality": {
+            "targetMax": "*"
+          },
+          "onCond": {
+            "op": "=",
+            "args": [
+              {
+                "=": "books.author"
+              },
+              {
+                "=": "$self"
+              }
+            ]
+          },
+          "on": "books.author = $self"
+        }
+      }
+    },
+    "my.bookshop.Orders": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "indexNo": 1,
+          "type": "cds.UUID"
+        },
+        "book": {
+          "indexNo": 2,
+          "type": "cds.Association",
+          "target": "my.bookshop.Books",
+          "foreignKeys": {
+            "ID": {
+              "path": "ID",
+              "indexNo": 1
+            }
+          }
+        },
+        "buyer": {
+          "indexNo": 3,
+          "type": "cds.String"
+        },
+        "date": {
+          "indexNo": 4,
+          "type": "cds.DateTime"
+        },
+        "amount": {
+          "indexNo": 5,
+          "type": "cds.Integer"
+        }
+      }
+    }
+  },
+  "version": {
+    "creator": "CDS Compiler v1.1.3",
+    "csn": "0.1.0"
+  },
+  "namespace": "my.bookshop"
+}
